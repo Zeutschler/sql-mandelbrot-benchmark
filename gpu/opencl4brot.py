@@ -241,7 +241,7 @@ if __name__ == "__main__":
         print("Image saved to opencl4brot.png")
     else:
         print("Usage: python opencl4brot.py [benchmark|generate]")
-        print("Tip: pro rychlou instalaci závislostí použijte 'uv' pokud jej máte:")
+        print("Tip: for quick dependency installation, use 'uv' if you have it:")
         print("  uv install pyopencl pillow")
-        print("Fallback pomocí pip:")
+        print("Fallback: pip install pyopencl pillow")
         print("  pip install pyopencl pillow")
