@@ -10,8 +10,7 @@ License: MIT
 GitHub: https://github.com/Zeutschler/sql-mandelbrot-benchmark
 """
 
-from utils import run_benchmark, print_results, print_header, save_mandelbrot_image
-
+from utils import print_header, print_results, run_benchmark, save_mandelbrot_image
 
 # Mandelbrot set configuration
 WIDTH = 1400
@@ -24,6 +23,9 @@ BENCHMARKS = [
     ("Pure Python", "pybrot", "run_pybrot"),
     ("NumPy (Vectorized)", "numpybrot", "run_numpybrot"),
     ("SQLite", "sqlitebrot", "run_sqlitebrot"),
+    ("FastPybrot", "fastpybrot", "run_pybrot"),
+    ("FasterPybrot", "fasterpybrot", "run_pybrot"),
+    ("ArrowDatafusion", "arrow_datafusion", "run_arrow_datafusion"),
     # Add more benchmarks here:
     # ("PostgreSQL", "postgresqlbrot", "run_postgresqlbrot"),
     # ("MySQL", "mysqlbrot", "run_mysqlbrot"),
@@ -41,7 +43,9 @@ def main():
         try:
             module = __import__(module_name)
             func = getattr(module, func_name)
-            result, elapsed_ms = run_benchmark(name, func, WIDTH, HEIGHT, MAX_ITERATIONS)
+            result, elapsed_ms = run_benchmark(
+                name, func, WIDTH, HEIGHT, MAX_ITERATIONS
+            )
             results.append((name, elapsed_ms))
 
             # Save the generated image
