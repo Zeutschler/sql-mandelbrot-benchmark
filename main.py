@@ -10,7 +10,7 @@ License: MIT
 GitHub: https://github.com/Zeutschler/sql-mandelbrot-benchmark
 """
 
-from utils import run_benchmark, print_results, print_header
+from utils import run_benchmark, print_results, print_header, save_mandelbrot_image
 
 
 # Mandelbrot set configuration
@@ -42,6 +42,12 @@ def main():
             func = getattr(module, func_name)
             result, elapsed_ms = run_benchmark(name, func, WIDTH, HEIGHT, MAX_ITERATIONS)
             results.append((name, elapsed_ms))
+
+            # Save the generated image
+            if result is not None:
+                filename = f"{module_name}.png"
+                save_mandelbrot_image(result, MAX_ITERATIONS, filename)
+
         except ImportError as e:
             print(f"\n⊘ {name} benchmark not available: {e}")
         except AttributeError as e:
