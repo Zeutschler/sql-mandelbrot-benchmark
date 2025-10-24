@@ -233,7 +233,7 @@ if __name__ == "__main__":
         height = 800
         max_iterations = 256
         print(f"Generating OpenCL Mandelbrot image ({width}x{height})...")
-        print("Tip: pokud používáte uv, nainstalujte závislosti příkazem: uv install pyopencl pillow")
+        print("Tip: if you're using uv, install dependencies with: uv install pyopencl pillow")
         print("Fallback: pip install pyopencl pillow")
         result = run_opencl4brot(width, height, max_iterations)
         save_image(result, "opencl4brot.png")
