@@ -7,12 +7,13 @@ various optimization techniques.
 
 Author: Thomas Zeutschler
 License: MIT
+GitHub: https://github.com/Zeutschler/sql-mandelbrot-benchmark
 """
 
 from utils import run_benchmark, print_results, print_header
 
 
-# Configuration
+# Mandelbrot set configuration
 WIDTH = 1400
 HEIGHT = 800
 MAX_ITERATIONS = 256

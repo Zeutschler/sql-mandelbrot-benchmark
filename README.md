@@ -1,20 +1,21 @@
-# DuckBrot 🦆🌀
+# sql-mandelbrot-benchmark
+**Because why benchmark sql engines with boring aggregates when you can generate fractals?**
 
-**Because why benchmark with boring aggregates when you can generate fractals?**
-
-This project uses recursive CTEs to calculate the Mandelbrot set entirely in SQL — no loops, no procedural code, just pure SQL. It serves as a fun and visually appealing benchmark for testing recursive query performance, floating-point precision, and computational capabilities of SQL engines.
+This project uses recursive Common Table Expressions (CTE) to calculate the Mandelbrot set entirely 
+in SQL — no loops, no procedural code, just pure SQL. It serves as a fun and visually appealing benchmark 
+for testing recursive query performance, floating-point precision, and computational capabilities of SQL engines.
 
 ![Mandelbrot Set](images/duckbrot.png)
 
-## 🎯 What is This?
+## What is This?
 
 A benchmark suite that:
 - Computes the famous [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) using SQL recursive CTEs
-- Tests multiple SQL engines and programming languages
-- Generates beautiful fractal images as proof of computation
-- Reveals which database renders infinity fastest
+- Tests multiple SQL engines, currently just DuckDB and a Python implementation for reference.
+- Generates beautiful fractal images as proof of correct computation
+- Reveals which database / SQL engine renders infinity fastest
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -28,18 +29,18 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## 📊 Benchmark Results
+## Current Benchmark Results
 
-Current results on 1400x800 pixels, 256 max iterations:
+Current results on 1400x800 pixels, 256 max iterations, Macbook Pro M4 Max:
 
-| Engine/Implementation | Time (ms) | Relative Performance |
-|----------------------|-----------|---------------------|
-| DuckDB (SQL)         | 1,375 ms  | 1.00x (baseline)    |
-| Pure Python          | 4,043 ms  | 2.94x slower        |
+| 🏆 | Engine/Implementation            | Time (ms) | Relative Performance |
+|----|----------------------------------|-----------|---------------------|
+| 1  | DuckDB (SQL)                     | 1,375 ms  | 1.00x (baseline)    |
+| 2  | Pure Python (for reference only) | 4,043 ms  | 2.94x slower        |
 
-**Winner: DuckDB SQL is ~3x faster than pure Python!**
+**Winner (for now): DuckDB**
 
-## 🎨 How It Works
+## How It Works
 
 The Mandelbrot set is computed by iterating the formula `z = z² + c` for each pixel in the complex plane:
 
@@ -77,28 +78,12 @@ GROUP BY x, y;
 
 The iteration count determines the color of each pixel, creating the iconic fractal pattern.
 
-## 📁 Project Structure
+## Adding New Benchmarks
 
-```
-duckbrot/
-├── main.py              # Benchmark orchestrator
-├── duckbrot.py          # DuckDB SQL implementation
-├── pybrot.py            # Pure Python reference implementation
-├── utils.py             # Shared utilities (image generation, timing, etc.)
-├── requirements.txt     # Python dependencies
-├── LICENSE              # MIT License
-├── README.md            # This file
-└── images/              # Generated fractal images
-    ├── duckbrot.png
-    └── pybrot.png
-```
-
-## 🔧 Adding New Benchmarks
-
-Want to test PostgreSQL, MySQL, or SQLite? Just:
+Want to test PostgreSQL, MySQL, MariaDB, SQLite or even Oracle or SQL-Server? Just:
 
 1. Create a new file (e.g., `postgresqlbrot.py`)
-2. Implement a `run_postgresqlbrot(width, height, max_iterations)` function
+2. Implement a `run_postgresqlbrot(width, height, max_iterations)` function (the DuckDB implementation is a good starting point)
 3. Add one line to `main.py`:
    ```python
    BENCHMARKS = [
@@ -110,7 +95,7 @@ Want to test PostgreSQL, MySQL, or SQLite? Just:
 
 The framework handles everything else automatically!
 
-## 🎯 Configuration
+## Configuration
 
 Adjust the benchmark parameters in `main.py`:
 
@@ -122,21 +107,22 @@ MAX_ITERATIONS = 256   # Maximum recursion depth
 
 Higher values = more detail, longer computation time.
 
-## 🐛 Known Engine Compatibility
+## Known Engine Compatibility
 
 ### ✅ Works Great
 - **DuckDB** - Excellent performance, proper DOUBLE precision
-- **Pure Python** - Reference implementation
+- **Pure Python** - Reference implementation, just to have an idea how fast the database engines are
 
-### 🔄 Should Work (untested)
+### Should Work (untested, please contribute 🤙)
 - PostgreSQL (with proper recursive CTE support)
 - SQLite (may need query adjustments)
+- others 
 
-### ⚠️ Known Issues
-- Some engines don't support DOUBLE precision and may use DECIMAL
+### Known Issues
+- Some engines might struggle with support for DOUBLE precision and may use DECIMAL (not good for fractals, and lead to pixelated results)
 - Watch out for type inference - explicit `::DOUBLE` casts are critical!
 
-## 🎓 What This Tests
+## What This Tests
 
 This benchmark evaluates:
 1. **Recursive CTE Performance** - How efficiently engines handle deep recursion
@@ -144,25 +130,25 @@ This benchmark evaluates:
 3. **Query Optimization** - How well engines optimize complex recursive queries
 4. **Scalability** - Performance with increasing iterations and resolution
 
-## 🤝 Contributing
+## Contributing
 
-Contributions welcome! Especially:
+Contributions very welcome! Especially:
 - New SQL engine implementations (PostgreSQL, MySQL, SQLite, etc.)
 - Performance optimizations
 - Better visualization options
 - Benchmark result submissions
 
-## 📜 License
+## License
 
 MIT License - See [LICENSE](LICENSE) file for details.
 
-## 🙏 Credits
+## Credits
 
-Created by Thomas Zeutschler
+Created by Thomas Zeutschler (using Claude Code)
 
-Inspired by the mathematical beauty of the Mandelbrot set and curiosity about SQL engine performance.
+Inspired by the mathematical beauty of the Mandelbrot set and the curiosity about SQL engine performance.
 
-## 🔗 Learn More
+## Learn More
 
 - [Mandelbrot Set (Wikipedia)](https://en.wikipedia.org/wiki/Mandelbrot_set)
 - [SQL Recursive CTEs](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL)

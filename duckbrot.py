@@ -1,24 +1,12 @@
 """
-DuckBrot Benchmark - Mandelbrot computation in plain SQL
+DuckBrot - DuckDB Mandelbrot Set Computation in Plain SQL
+
+This is a reference implementation of the sql-mandelbrot-benchmark using DuckDB.
+It computes the classic Mandelbrot set in plain SQL — no loops, no procedural code, just pure SQL.
+
 Author: Thomas Zeutschler
 License: MIT
-
-This script is intended to stress-test the performance and
-recursive computing capabilities of modern SQL engines.
-It generates the famous Mandelbrot set entirely in SQL and
-saves the result as a beautiful image. This reference
-implementation uses DuckDB, therefore the name 'DuckBrot'.
-
-Questions to answer for a given SQL engine and in comparison:
-- Is the engine able to run the SQL Mandelbrot computation?
-- How much time does it take?
-- maybe (not tested here): How much memory does it require?
-
-The Mandelbrot set is computed by iterating the formula
-z = z² + c for each pixel in the complex plane, tracking
-how many iterations it takes for points to escape (|z| > 2)
-or determining they remain bounded. Further details:
-https://en.wikipedia.org/wiki/Mandelbrot_set
+GitHub: https://github.com/Zeutschler/sql-mandelbrot-benchmark
 """
 
 import duckdb

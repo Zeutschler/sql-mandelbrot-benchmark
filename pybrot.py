@@ -7,6 +7,7 @@ Mandelbrot set using traditional procedural code.
 
 Author: Thomas Zeutschler
 License: MIT
+GitHub: https://github.com/Zeutschler/sql-mandelbrot-benchmark
 """
 
 from utils import save_mandelbrot_image
