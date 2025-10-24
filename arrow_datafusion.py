@@ -10,7 +10,6 @@ License: MIT
 GitHub: https://github.com/Zeutschler/sql-mandelbrot-benchmark
 """
 
-import duckdb
 import numpy as np
 from datafusion import SessionContext
 
@@ -76,7 +75,6 @@ def run_arrow_datafusion(width, height, max_iterations):
     ctx = SessionContext()
 
     # Execute query
-    conn = duckdb.connect()
     result = ctx.sql(mandelbrot_query).to_pylist()
 
     # Convert to numpy array
