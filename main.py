@@ -22,6 +22,7 @@ MAX_ITERATIONS = 256
 BENCHMARKS = [
     ("DuckDB (SQL)", "duckbrot", "run_duckbrot"),
     ("Pure Python", "pybrot", "run_pybrot"),
+    ("NumPy (Vectorized)", "numpybrot", "run_numpybrot"),
     ("SQLite", "sqlitebrot", "run_sqlitebrot"),
     # Add more benchmarks here:
     # ("PostgreSQL", "postgresqlbrot", "run_postgresqlbrot"),

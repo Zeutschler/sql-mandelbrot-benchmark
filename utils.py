@@ -108,6 +108,16 @@ def print_results(results, width, height, max_iterations):
         print("No successful benchmarks to report.")
         return
 
+    # Find DuckDB result as baseline
+    duckdb_time = None
+    for name, time_ms in successful:
+        if "DuckDB" in name:
+            duckdb_time = time_ms
+            break
+
+    # If no DuckDB, fall back to fastest
+    baseline_time = duckdb_time if duckdb_time else min(successful, key=lambda x: x[1])[1]
+
     # Find fastest
     fastest_name, fastest_time = min(successful, key=lambda x: x[1])
 
@@ -116,11 +126,14 @@ def print_results(results, width, height, max_iterations):
     print(f"{'-'*60}")
 
     for name, time_ms in successful:
-        relative = time_ms / fastest_time
-        print(f"{name:<30} {time_ms:>10.2f}      {relative:>6.2f}x")
+        relative = time_ms / baseline_time
+        marker = " ⭐" if time_ms == fastest_time else ""
+        print(f"{name:<30} {time_ms:>10.2f}      {relative:>6.2f}x{marker}")
 
     print(f"{'-'*60}")
-    print(f"Winner: {fastest_name} ({fastest_time:.2f} ms)")
+    baseline_name = "DuckDB (SQL)" if duckdb_time else fastest_name
+    print(f"Baseline: {baseline_name} ({baseline_time:.2f} ms)")
+    print(f"Fastest: {fastest_name} ({fastest_time:.2f} ms)")
     print(f"{'='*60}\n")
 
 
