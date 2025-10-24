@@ -33,12 +33,16 @@ python main.py
 
 Current results on 1400x800 pixels, 256 max iterations, Macbook Pro M4 Max:
 
-| 🏆 | Engine/Implementation            | Time (ms) | Relative Performance |
-|----|----------------------------------|-----------|---------------------|
-| 1  | DuckDB (SQL)                     | 1,375 ms  | 1.00x (baseline)    |
-| 2  | Pure Python (for reference only) | 4,043 ms  | 2.94x slower        |
+| 🏆 | Engine/Implementation        | Time (ms) | Relative Performance |
+|----|------------------------------|-----------|---------------------|
+| 1  | NumPy (vectorized, unrolled) |   666 ms  | **0.48x** ⭐        |
+| 2  | DuckDB (SQL)                 | 1,394 ms  | 1.00x (baseline)    |
+| 3  | Pure Python                  | 4,099 ms  | 2.94x slower        |
+| 4  | SQLite (SQL)                 | 43,888 ms | 31.48x slower       |
 
-**Winner (for now): DuckDB**
+**Winner overall: NumPy** - 2x faster than DuckDB using loop unrolling and vectorized operations!
+
+**Winner SQL: DuckDB** - Very impressive performance, just 2x slower than optimized Numpy.
 
 ## How It Works
 
@@ -89,6 +93,7 @@ Want to test PostgreSQL, MySQL, MariaDB, SQLite or even Oracle or SQL-Server? Ju
    BENCHMARKS = [
        ("DuckDB (SQL)", "duckbrot", "run_duckbrot"),
        ("Pure Python", "pybrot", "run_pybrot"),
+       ..., 
        ("PostgreSQL", "postgresqlbrot", "run_postgresqlbrot"),  # New!
    ]
    ```
@@ -110,8 +115,10 @@ Higher values = more detail, longer computation time.
 ## Known Engine Compatibility
 
 ### ✅ Works Great
+- **NumPy** - Highly optimized with loop unrolling and vectorized operations (fastest!)
 - **DuckDB** - Excellent performance, proper DOUBLE precision
 - **Pure Python** - Reference implementation, just to have an idea how fast the database engines are
+- **SQLite** - Works but significantly slower due to recursive CTE overhead
 
 ### Should Work (untested, please contribute 🤙)
 - PostgreSQL (with proper recursive CTE support)
