@@ -237,7 +237,7 @@ if __name__ == "__main__":
         print("Fallback: pip install pyopencl pillow")
         result = run_opencl4brot(width, height, max_iterations)
         save_image(result, "opencl4brot.png")
-        # explicitní echo (save_image již vypisuje uložení)
+        # explicit echo (save_image already prints save confirmation)
         print("Image saved to opencl4brot.png")
     else:
         print("Usage: python opencl4brot.py [benchmark|generate]")
