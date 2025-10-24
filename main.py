@@ -19,9 +19,9 @@ MAX_ITERATIONS = 256
 
 # Benchmark registry: (name, module, function)
 BENCHMARKS = [
+    ("NumPy (Vectorized)", "numpybrot", "run_numpybrot"),
     ("DuckDB (SQL)", "duckbrot", "run_duckbrot"),
     ("Pure Python", "pybrot", "run_pybrot"),
-    ("NumPy (Vectorized)", "numpybrot", "run_numpybrot"),
     ("SQLite", "sqlitebrot", "run_sqlitebrot"),
     ("FastPybrot", "fastpybrot", "run_pybrot"),
     ("FasterPybrot", "fasterpybrot", "run_pybrot"),
