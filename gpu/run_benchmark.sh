@@ -10,9 +10,9 @@ echo "  Platform: macOS Metal 4"
 echo ""
 
 # Run the benchmark
-swift metal4brot.swift benchmark
+#swift metal4brot.swift benchmark
 swift metal4brot_optimized.swift benchmark
-python3 opencl4brot.py benchmark
+# python3 opencl4brot.py benchmark
 
 echo ""
 echo "Benchmark complete! Check metal4brot.png for output."

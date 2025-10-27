@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "datafusion>=50.1.0",
+    "pyopencl>=2025.2.6",
 ]
 
 [dependency-groups]

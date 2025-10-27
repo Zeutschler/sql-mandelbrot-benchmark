@@ -33,15 +33,16 @@ python main.py
 
 Current results on 1400x800 pixels, 256 max iterations, Macbook Pro M4 Max:
 
-| 🏆 | Engine/Implementation        | Time (ms) | Relative Performance |
-|----|------------------------------|-----------|---------------------|
-| 1  | NumPy (vectorized, unrolled) |   665 ms  | **0.83x** ⭐        |
-| 2  | ArrowDatafusion (SQL)        |   797 ms  | 1.00x (baseline)    |
-| 3  | DuckDB (SQL)                 | 1,364 ms  | 1.71x slower        |
-| 4  | FasterPybrot                 | 2,850 ms  | 3.58x slower        |
-| 5  | FastPybrot                   | 3,327 ms  | 4.17x slower        |
-| 6  | Pure Python                  | 4,328 ms  | 5.43x slower        |
-| 7  | SQLite (SQL)                 | 44,918 ms | 56.36x slower       |
+| 🏆 | Engine/Implementation                      | Time (ms) | Relative Performance |
+|----|--------------------------------------------|-----------|----------------------|
+| *  | Mac Metal GPU (unfair, but the true limit) | 0.77 ms   | ∞ 😵                 |
+| 1  | NumPy (vectorized, unrolled)               | 665 ms    | **0.83x** ⭐          |
+| 2  | ArrowDatafusion (SQL)                      | 797 ms    | 1.00x (baseline)     |
+| 3  | DuckDB (SQL)                               | 1,364 ms  | 1.71x slower         |
+| 4  | FasterPybrot                               | 2,850 ms  | 3.58x slower         |
+| 5  | FastPybrot                                 | 3,327 ms  | 4.17x slower         |
+| 6  | Pure Python                                | 4,328 ms  | 5.43x slower         |
+| 7  | SQLite (SQL)                               | 44,918 ms | 56.36x slower        |
 
 **Winner overall: NumPy** - Just 17% faster than ArrowDatafusion using loop unrolling and vectorized operations!
 
@@ -154,7 +155,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ## Credits
 
-Created by Thomas Zeutschler, Ulrich Ludmann
+Created by Thomas Zeutschler, Ulrich Ludmann, and Jakub Jirak (the grand master of GPU fractals)
 
 Inspired by the mathematical beauty of the Mandelbrot set and the curiosity about SQL engine performance.
 
