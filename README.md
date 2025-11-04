@@ -36,13 +36,15 @@ Current results on 1400x800 pixels, 256 max iterations, Macbook Pro M4 Max:
 | 🏆 | Engine/Implementation                      | Time (ms) | Relative Performance |
 |----|--------------------------------------------|-----------|----------------------|
 | *  | Mac Metal GPU (unfair, but the true limit) | 0.77 ms   | ∞ 😵                 |
-| 1  | NumPy (vectorized, unrolled)               | 665 ms    | **0.83x** ⭐          |
-| 2  | ArrowDatafusion (SQL)                      | 797 ms    | 1.00x (baseline)     |
-| 3  | DuckDB (SQL)                               | 1,364 ms  | 1.71x slower         |
-| 4  | FasterPybrot                               | 2,850 ms  | 3.58x slower         |
-| 5  | FastPybrot                                 | 3,327 ms  | 4.17x slower         |
-| 6  | Pure Python                                | 4,328 ms  | 5.43x slower         |
-| 7  | SQLite (SQL)                               | 44,918 ms | 56.36x slower        |
+| 1  | NumPy (vectorized, unrolled)               | 664 ms    | **0.78x** ⭐         |
+| 2  | ArrowDatafusion (SQL)                      | 848 ms    | 1.00x (baseline)     |
+| 3  | ClickHouse (SQL)                           | 1,039 ms  | 1.23x slower         |
+| 3  | chDB (SQL)                                 | 1,541 ms  | 1.82x slower         |
+| 4  | DuckDB (SQL)                               | 1,839 ms  | 2.17x slower         |
+| 5  | FasterPybrot                               | 2,654 ms  | 3.13x slower         |
+| 6  | FastPybrot                                 | 2,875 ms  | 3.39x slower         |
+| 7  | Pure Python                                | 3,070 ms  | 3.62x slower         |
+| 8  | SQLite (SQL)                               | 42,565 ms | 50.2x slower         |
 
 **Winner overall: NumPy** - Just 17% faster than ArrowDatafusion using loop unrolling and vectorized operations!
 
@@ -95,6 +97,7 @@ Want to test PostgreSQL, MySQL, MariaDB, SQLite or even Oracle or SQL-Server? Ju
 3. Add one line to `main.py`:
    ```python
    BENCHMARKS = [
+       ("ClickHouse (SQL)", "clickbrot", "run_clickbrot"),
        ("DuckDB (SQL)", "duckbrot", "run_duckbrot"),
        ("Pure Python", "pybrot", "run_pybrot"),
        ..., 
@@ -120,13 +123,13 @@ Higher values = more detail, longer computation time.
 
 ### ✅ Works Great
 - **NumPy** - Highly optimized with loop unrolling and vectorized operations (fastest!)
+- **ClickHouse** - Excellent performance, full precision
 - **DuckDB** - Excellent performance, proper DOUBLE precision
 - **Pure Python** - Reference implementation, just to have an idea how fast the database engines are
 - **SQLite** - Works but significantly slower due to recursive CTE overhead
 
 ### Should Work (untested, please contribute 🤙)
 - PostgreSQL (with proper recursive CTE support)
-- SQLite (may need query adjustments)
 - others 
 
 ### Known Issues
@@ -144,7 +147,7 @@ This benchmark evaluates:
 ## Contributing
 
 Contributions very welcome! Especially:
-- New SQL engine implementations (PostgreSQL, MySQL, SQLite, etc.)
+- New SQL engine implementations (PostgreSQL, MySQL, etc.)
 - Performance optimizations
 - Better visualization options
 - Benchmark result submissions
@@ -163,6 +166,7 @@ Inspired by the mathematical beauty of the Mandelbrot set and the curiosity abou
 
 - [Mandelbrot Set (Wikipedia)](https://en.wikipedia.org/wiki/Mandelbrot_set)
 - [SQL Recursive CTEs](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL)
+- [ClickHouse](https://clickhouse.com/)
 - [DuckDB](https://duckdb.org/)
 
 ---
