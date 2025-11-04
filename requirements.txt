@@ -3,3 +3,5 @@ duckdb
 pillow
 matplotlib
 datafusion
+chdb
+pyarrow
