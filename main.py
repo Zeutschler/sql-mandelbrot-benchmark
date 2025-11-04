@@ -26,6 +26,7 @@ BENCHMARKS = [
     ("FasterPybrot", "fasterpybrot", "run_pybrot"),
     ("Pure Python", "pybrot", "run_pybrot"),
     ("SQLite", "sqlitebrot", "run_sqlitebrot"),
+    ("ClickHouse", "clickbrot", "run_clickbrot"),
     # Add more benchmarks here:
     # ("PostgreSQL", "postgresqlbrot", "run_postgresqlbrot"),
     # ("MySQL", "mysqlbrot", "run_mysqlbrot"),
