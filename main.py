@@ -21,12 +21,12 @@ MAX_ITERATIONS = 256
 BENCHMARKS = [
     ("NumPy (Vectorized)", "numpybrot", "run_numpybrot"),
     ("ArrowDatafusion", "arrow_datafusion", "run_arrow_datafusion"),
+    ("ClickHouse", "clickbrot", "run_clickbrot"),
     ("DuckDB (SQL)", "duckbrot", "run_duckbrot"),
     ("FastPybrot", "fastpybrot", "run_pybrot"),
     ("FasterPybrot", "fasterpybrot", "run_pybrot"),
     ("Pure Python", "pybrot", "run_pybrot"),
     ("SQLite", "sqlitebrot", "run_sqlitebrot"),
-    ("ClickHouse", "clickbrot", "run_clickbrot"),
     # Add more benchmarks here:
     # ("PostgreSQL", "postgresqlbrot", "run_postgresqlbrot"),
     # ("MySQL", "mysqlbrot", "run_mysqlbrot"),
