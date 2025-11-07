@@ -3,3 +3,4 @@ duckdb
 pillow
 matplotlib
 datafusion
+psycopg[binary]
