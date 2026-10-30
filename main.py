@@ -21,6 +21,7 @@ MAX_ITERATIONS = 256
 BENCHMARKS = [
     ("NumPy (Vectorized)", "numpybrot", "run_numpybrot"),
     ("ArrowDatafusion", "arrow_datafusion", "run_arrow_datafusion"),
+    ("SereneDB (SQL)", "serenebrot", "run_serenebrot"),
     ("DuckDB (SQL)", "duckbrot", "run_duckbrot"),
     ("FastPybrot", "fastpybrot", "run_pybrot"),
     ("FasterPybrot", "fasterpybrot", "run_pybrot"),

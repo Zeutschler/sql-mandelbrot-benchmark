@@ -120,6 +120,7 @@ Higher values = more detail, longer computation time.
 
 ### ✅ Works Great
 - **NumPy** - Highly optimized with loop unrolling and vectorized operations (fastest!)
+- **SereneDB** - A server built on a fork of DuckDB's engine, so it runs the DuckDB reference query unchanged, with the recursive CTE on all cores; speaks the PostgreSQL wire protocol (connect via psycopg) and returns the result as Parquet over `COPY ... TO STDOUT`. Run it in Docker: `docker run --rm -p 7890:7890 -e POSTGRES_PASSWORD=postgres serenedb/serenedb:latest`
 - **DuckDB** - Excellent performance, proper DOUBLE precision
 - **Pure Python** - Reference implementation, just to have an idea how fast the database engines are
 - **SQLite** - Works but significantly slower due to recursive CTE overhead
